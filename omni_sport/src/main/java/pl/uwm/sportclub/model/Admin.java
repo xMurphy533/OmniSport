@@ -1,5 +1,7 @@
 package pl.uwm.sportclub.model;
 
+import utils.ConsoleColors;
+
 import java.time.LocalDate;
 
 public class Admin extends User{
@@ -34,13 +36,8 @@ public class Admin extends User{
     }
     @Override
     public String toString() {
-        return getClass().getSimpleName() +
-                " | ID: " + getId() +
-                ", First name: " + getFirstName() +
-                ", Last name: " + getLastName() +
-                ", E-mail address: " + getEmail() +
-                ", Date of birth: " + getDateOfBirth() +
-                ", Admin level: " + getAdminLevel() +
-                ", Last audit date: " + getLastAuditDate() + ".";
+        return super.toString() + "\n" +
+                ConsoleColors.RED + ConsoleColors.BOLD + "Admin level: " + ConsoleColors.RESET + getAdminLevel() + "\n" +
+                ConsoleColors.BLUE + ConsoleColors.BOLD + "Last audit date: " + ConsoleColors.RESET + getLastAuditDate();
     }
 }

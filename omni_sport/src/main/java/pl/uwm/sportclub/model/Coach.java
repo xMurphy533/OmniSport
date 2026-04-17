@@ -1,5 +1,7 @@
 package pl.uwm.sportclub.model;
 
+import utils.ConsoleColors;
+
 import java.time.LocalDate;
 
 public class Coach extends User{
@@ -24,12 +26,7 @@ public class Coach extends User{
     }
     @Override
     public String toString() {
-        return getClass().getSimpleName() +
-                " | ID: " + getId() +
-                ", First name: " + getFirstName() +
-                ", Last name: " + getLastName() +
-                ", E-mail address: " + getEmail() +
-                ", Date of birth: " + getDateOfBirth() +
-                ", Section: " + getSection() + ".";
+        return super.toString() + "\n" +
+                ConsoleColors.RED + ConsoleColors.BOLD + "Section: " + ConsoleColors.RESET + getSection();
     }
 }

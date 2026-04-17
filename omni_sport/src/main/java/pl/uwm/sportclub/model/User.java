@@ -90,11 +90,11 @@ public class User {
 
     @Override
     public String toString() {
-        return getClass().getSimpleName() + "\n" +
+        return  ConsoleColors.BOLD + getClass().getSimpleName() + "\n" +
                 ConsoleColors.CYAN + ConsoleColors.BOLD + "ID: " + ConsoleColors.RESET + getId() + "\n" +
                 ConsoleColors.GREEN + ConsoleColors.BOLD + "First name: " + ConsoleColors.RESET +getFirstName() + "\n" +
                 ConsoleColors.GREEN + ConsoleColors.BOLD + "Last name: " + ConsoleColors.RESET +getLastName() + "\n" +
                 ConsoleColors.YELLOW + ConsoleColors.BOLD + "E-mail address: " + ConsoleColors.RESET +getEmail() + "\n" +
-                ConsoleColors.PURPLE + ConsoleColors.BOLD + "Date of birth: " + ConsoleColors.RESET + getDateOfBirth() + ".";
+                ConsoleColors.PURPLE + ConsoleColors.BOLD + "Date of birth: " + ConsoleColors.RESET + getDateOfBirth();
     }
 }
