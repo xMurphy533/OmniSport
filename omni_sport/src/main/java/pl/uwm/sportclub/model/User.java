@@ -1,5 +1,7 @@
 package pl.uwm.sportclub.model;
 
+import utils.ConsoleColors;
+
 import java.time.LocalDate;
 
 public class User {
@@ -22,9 +24,18 @@ public class User {
         if(email == null)
             this.email = "";
         this.email = email;
-        if(dateOfBirth.isEqual(null))
-            this.dateOfBirth = LocalDate.of(2000, 1, 1);
+        if(dateOfBirth == null || dateOfBirth.isEqual(LocalDate.now()))
+            throw new IllegalArgumentException("Date can't be null!");
         this.dateOfBirth = dateOfBirth;
+    }
+
+    public User()
+    {
+        this.id = 0;
+        this.firstName = "unkown";
+        this.lastName = "unkown";
+        this.email = "unkown@";
+        this.dateOfBirth = LocalDate.now();
     }
 
     public int getId() {
@@ -68,12 +79,22 @@ public class User {
     }
 
     public LocalDate getDateOfBirth() {
-        if(dateOfBirth.isEqual(null))
+        if(dateOfBirth == null || dateOfBirth.isEqual(LocalDate.now()))
             this.dateOfBirth = LocalDate.of(2000, 1, 1);
         return dateOfBirth;
     }
 
     public void setDateOfBirth(LocalDate dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
+    }
+
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() + "\n" +
+                ConsoleColors.CYAN + ConsoleColors.BOLD + "ID: " + ConsoleColors.RESET + getId() + "\n" +
+                ConsoleColors.GREEN + ConsoleColors.BOLD + "First name: " + ConsoleColors.RESET +getFirstName() + "\n" +
+                ConsoleColors.GREEN + ConsoleColors.BOLD + "Last name: " + ConsoleColors.RESET +getLastName() + "\n" +
+                ConsoleColors.YELLOW + ConsoleColors.BOLD + "E-mail address: " + ConsoleColors.RESET +getEmail() + "\n" +
+                ConsoleColors.PURPLE + ConsoleColors.BOLD + "Date of birth: " + ConsoleColors.RESET + getDateOfBirth() + ".";
     }
 }

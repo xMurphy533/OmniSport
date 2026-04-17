@@ -12,6 +12,12 @@ public class Member extends User{
         this.membershipStatus = membershipStatus;
     }
 
+    public Member() {
+        super(0, "unkown", "unkown", "unkown@", LocalDate.now());
+        this.discipline = "unkown";
+        this.membershipStatus = false;
+    }
+
     public String getDiscipline() {
         return discipline;
     }
@@ -26,5 +32,16 @@ public class Member extends User{
 
     public void setMembershipStatus(boolean membershipStatus) {
         this.membershipStatus = membershipStatus;
+    }
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() +
+                " | ID: " + getId() +
+                ", First name: " + getFirstName() +
+                ", Last name: " + getLastName() +
+                ", E-mail address: " + getEmail() +
+                ", Date of birth: " + getDateOfBirth() +
+                ", Discipline: " + getDiscipline() +
+                ", Status of membership: " + isMembershipStatus() + ".";
     }
 }

@@ -9,6 +9,11 @@ public class Coach extends User{
         super(id, firstName, lastName, email, dateOfBirth);
         this.section = section;
     }
+    public Coach()
+    {
+        super(0, "unkown", "unkown", "unkown@", LocalDate.now());
+        this.section = "unkown";
+    }
 
     public String getSection() {
         return section;
@@ -16,5 +21,15 @@ public class Coach extends User{
 
     public void setSection(String section) {
         this.section = section;
+    }
+    @Override
+    public String toString() {
+        return getClass().getSimpleName() +
+                " | ID: " + getId() +
+                ", First name: " + getFirstName() +
+                ", Last name: " + getLastName() +
+                ", E-mail address: " + getEmail() +
+                ", Date of birth: " + getDateOfBirth() +
+                ", Section: " + getSection() + ".";
     }
 }
