@@ -20,4 +20,21 @@ public class AdminRepository {
     {
         return admins;
     }
+
+    public Admin findById(int id)
+    {
+        for(Admin a : admins)
+        {
+            if(a.getId() == id)
+            {
+                return a;
+            }
+        }
+        return null;
+    }
+
+    public void deleteById(int id)
+    {
+        admins.removeIf(admin -> admin.getId() == id);
+    }
 }

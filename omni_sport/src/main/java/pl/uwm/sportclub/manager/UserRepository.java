@@ -20,4 +20,20 @@ public class UserRepository {
     {
         return users;
     }
+    public User findById(int id)
+    {
+        for(User u : users)
+        {
+            if(u.getId() == id)
+            {
+                return u;
+            }
+        }
+        return null;
+    }
+
+    public void removeById(int id)
+    {
+        users.removeIf(user -> user.getId() == id);
+    }
 }

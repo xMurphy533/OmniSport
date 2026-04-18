@@ -49,20 +49,22 @@ public class Main {
                 LocalDate.now());
         adminRepository.addAdmin(a1);
         //System.out.println(a1.toString());
-        Member m2 = new Member(2,
+        Member m2 = new Member(3,
                 "Łukasz", "Ocimek",
                 "lukoci12@gmail.com",
                 LocalDate.of(1998, 5, 4),
                 "Kickboxing",
                 true);
         memberRepository.addMember(m2);
-        Member m3 = new Member(3,
+        Member m3 = new Member(4,
                 "Łukasz", "Kaczyński",
                 "lukikaczka@gmail.com",
                 LocalDate.of(2005, 8, 10),
                 "Volleyball",
                 false);
         memberRepository.addMember(m3);
+        //System.out.println(memberRepository.findById(3));
+        memberRepository.removeById(3);
         for(Member m : memberRepository.getMembers())
         {
             System.out.println(m.toString());

@@ -21,4 +21,21 @@ public class MemberRepository {
     {
         return members;
     }
+
+    public Member findById(int id)
+    {
+        for(Member m : members)
+        {
+            if(m.getId() == id)
+            {
+                return m;
+            }
+        }
+        return null;
+    }
+
+    public void removeById(int id)
+    {
+        members.removeIf(m -> m.getId() == id);
+    }
 }
