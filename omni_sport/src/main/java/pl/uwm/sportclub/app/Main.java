@@ -22,23 +22,24 @@ public class Main {
                 "Kaczmarczyk",
                 "nikodemkaczmarczyk48@gmail.com",
                 LocalDate.of(2005, 3, 19));
-        userRepository.addUser(u1);
+        userRepository.add(u1);
         //System.out.println(u1.toString());
         Member m1 = new Member(2,
                 "Karol", "Nowak",
                 "karol.nowak@gmail.com",
                 LocalDate.of(2000, 7, 12),
                 "Football",
-                true);
+                true,
+                LocalDate.now());
         //System.out.println(m1.toString());
-        memberRepository.addMember(m1);
+        memberRepository.add(m1);
         Coach c1 = new Coach(3,
                 "Przemysław",
                 "Kowalski",
                 "przemek.k70@gmail.com",
                 LocalDate.of(1970, 12, 2),
                 "Skiing");
-        coachRepository.addCoach(c1);
+        coachRepository.add(c1);
         //System.out.println(c1.toString());
         Admin a1 = new Admin(1,
                 "Jan",
@@ -47,25 +48,27 @@ public class Main {
                 LocalDate.of(1990, 4, 6),
                 "MODERATOR",
                 LocalDate.now());
-        adminRepository.addAdmin(a1);
+        adminRepository.add(a1);
         //System.out.println(a1.toString());
         Member m2 = new Member(3,
                 "Łukasz", "Ocimek",
                 "lukoci12@gmail.com",
                 LocalDate.of(1998, 5, 4),
                 "Kickboxing",
-                true);
-        memberRepository.addMember(m2);
+                true,
+                LocalDate.of(2013, 10, 2));
+        memberRepository.add(m2);
         Member m3 = new Member(4,
                 "Łukasz", "Kaczyński",
                 "lukikaczka@gmail.com",
                 LocalDate.of(2005, 8, 10),
                 "Volleyball",
-                false);
-        memberRepository.addMember(m3);
+                false,
+                LocalDate.of(2025, 10, 5));
+        memberRepository.add(m3);
         //System.out.println(memberRepository.findById(3));
         memberRepository.removeById(3);
-        for(Member m : memberRepository.getMembers())
+        for(Member m : memberRepository.getAllItems())
         {
             System.out.println(m.toString());
             System.out.println("===========");

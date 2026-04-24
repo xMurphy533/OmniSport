@@ -7,11 +7,13 @@ import java.time.LocalDate;
 public class Member extends User{
     private String discipline;
     private boolean membershipStatus;
+    private LocalDate membershipExpiryDate;
 
-    public Member(int id, String firstName, String lastName, String email, LocalDate dateOfBirth, String discipline, boolean membershipStatus) {
+    public Member(int id, String firstName, String lastName, String email, LocalDate dateOfBirth, String discipline, boolean membershipStatus, LocalDate membershipExpiryDate) {
         super(id, firstName, lastName, email, dateOfBirth);
         this.discipline = discipline;
         this.membershipStatus = membershipStatus;
+        this.membershipExpiryDate = membershipExpiryDate;
     }
 
     public Member() {
@@ -35,6 +37,17 @@ public class Member extends User{
     public void setMembershipStatus(boolean membershipStatus) {
         this.membershipStatus = membershipStatus;
     }
+
+    public LocalDate getMembershipExpiryDate() {
+        return membershipExpiryDate;
+    }
+
+    public void setMembershipExpiryDate(LocalDate membershipExpiryDate) {
+        if(!membershipExpiryDate.isBefore(LocalDate.now()))
+            this.membershipExpiryDate = membershipExpiryDate;
+        throw new IllegalArgumentException("This date does not exist yet");
+    }
+
     @Override
     public String toString() {
         String answer;

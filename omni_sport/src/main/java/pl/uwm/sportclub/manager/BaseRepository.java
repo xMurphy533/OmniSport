@@ -5,7 +5,7 @@ import pl.uwm.sportclub.model.User;
 import java.util.ArrayList;
 import java.util.List;
 
-public class BaseRepository <T extends User> {
+public abstract class BaseRepository <T extends User> {
     protected List<T> items = new ArrayList<>();
 
     public void add(T item)
@@ -18,7 +18,7 @@ public class BaseRepository <T extends User> {
             throw new IllegalArgumentException("Item can't be 'null'");
     }
 
-    public List<T> getItems()
+    public List<T> getAllItems()
     {
         System.out.println(getClass().getSimpleName());
         return items;
