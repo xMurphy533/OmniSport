@@ -2,6 +2,7 @@ package pl.uwm.sportclub.service;
 
 import pl.uwm.sportclub.manager.MemberRepository;
 import pl.uwm.sportclub.model.Member;
+import utils.ConsoleColors;
 
 import java.time.LocalDate;
 
@@ -23,10 +24,10 @@ public class MemberService {
         }
         if(member.getMembershipExpiryDate().isBefore(LocalDate.now()))
         {
-            System.out.println("The pass has expired for " + member.getFirstName() + " " + member.getLastName());
+            System.out.println(ConsoleColors.RED + ConsoleColors.BOLD + "The pass has expired for "+ ConsoleColors.RESET  + member.getFirstName() + " " + member.getLastName());
             return false;
         }
-        System.out.println("Access verified positively. Have a nice trainig " + member.getFirstName() + "!");
+        System.out.println(ConsoleColors.GREEN + ConsoleColors.BOLD + "Access verified positively. Have a nice trainig "+ ConsoleColors.RESET + member.getFirstName() + "!");
         return true;
     }
 
