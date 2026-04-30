@@ -1,10 +1,11 @@
 package pl.uwm.sportclub.model;
 
+import pl.uwm.sportclub.core.Identifiable;
 import utils.ConsoleColors;
 
 import java.time.LocalDate;
 
-public class User {
+public class User implements Identifiable {
     private int id;
     private String firstName;
     private String lastName;

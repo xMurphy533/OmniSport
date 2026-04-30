@@ -1,11 +1,12 @@
 package pl.uwm.sportclub.manager;
 
+import pl.uwm.sportclub.core.Identifiable;
 import pl.uwm.sportclub.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public abstract class BaseRepository <T extends User> {
+public abstract class BaseRepository <T extends Identifiable> {
     protected List<T> items = new ArrayList<>();
 
     public void add(T item)
@@ -34,19 +35,6 @@ public abstract class BaseRepository <T extends User> {
             }
         }
         return null;
-    }
-
-    public List<T> findByLastName(String lastName)
-    {
-        List<T> foundItems = new ArrayList<>();
-        for(T item : items)
-        {
-            if(item.getLastName().equalsIgnoreCase(lastName))
-            {
-                foundItems.add(item);
-            }
-        }
-        return foundItems;
     }
 
     public void removeById(int id)
