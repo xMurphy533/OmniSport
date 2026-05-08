@@ -2,6 +2,7 @@ package pl.uwm.sportclub.ui;
 
 import pl.uwm.sportclub.model.Member;
 import pl.uwm.sportclub.service.MemberService;
+import utils.InputValidator;
 
 import java.time.LocalDate;
 import java.util.Scanner;
@@ -60,7 +61,7 @@ public class ReceptionMenu {
 
         System.out.println("Welcome in registration module! Please enter data of new member.");
 
-        id = getValidIntFromUser("ID: ");
+        id = InputValidator.getValidIntFromUser("ID: ");
 
         System.out.println("First name: ");
         firstName = scanner.nextLine();
@@ -71,11 +72,11 @@ public class ReceptionMenu {
         System.out.println("E-mail address: ");
         email = scanner.nextLine();
 
-        year = getValidIntFromUser("Year of birth: ");
+        year = InputValidator.getValidIntFromUser("Year of birth: ");
 
-        month = getValidIntFromUser("Month of birth: ");
+        month = InputValidator.getValidIntFromUser("Month of birth: ");
 
-        day = getValidIntFromUser("Day of birth: ");
+        day = InputValidator.getValidIntFromUser("Day of birth: ");
 
         dateOfBirth = LocalDate.of(year, month, day);
 
@@ -104,23 +105,5 @@ public class ReceptionMenu {
             }
         }
         memberService.verifyAccess(id);
-    }
-
-    private int getValidIntFromUser(String input)
-    {
-        int result = 0;
-        boolean isValid = false;
-        while(!isValid)
-        {
-            System.out.println(input);
-            String data = scanner.nextLine();
-            try{
-                result = Integer.parseInt(data);
-                isValid = true;
-            } catch (NumberFormatException e) {
-                System.out.println("Invalid number format");
-            }
-        }
-        return result;
     }
 }
