@@ -120,9 +120,10 @@ public class ManagerMenu {
     {
         System.out.println("=== RENTING OF EQUIPMENT ===");
         int id = InputValidator.getPositiveIntFromUser("Enter ID of equipment you want to rent: ");
+        int memberID = InputValidator.getPositiveIntFromUser("Enter ID of member, who rent equipment: ");
         try
         {
-            equipmentService.rentEquipment(id);
+            equipmentService.rentEquipment(id, memberID);
         } catch (IllegalArgumentException | IllegalStateException e)
         {
             System.out.println(ConsoleColors.RED + ConsoleColors.BOLD + "DECLINE: " + ConsoleColors.RESET + e.getMessage());

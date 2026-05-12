@@ -7,6 +7,7 @@ public class Equipment implements Identifiable {
     private String name;
     private String type;
     private boolean isAvailable;
+    private int renterID;
 
     public Equipment(int id, String name, String type) {
         if(id < 0)
@@ -58,5 +59,12 @@ public class Equipment implements Identifiable {
 
     public void setAvailable(boolean available) {
         isAvailable = available;
+    }
+    public int getRenterID() {
+        return renterID;
+    }
+
+    public void setRenterId(int renterID) {
+        this.renterID = renterID;
     }
 }

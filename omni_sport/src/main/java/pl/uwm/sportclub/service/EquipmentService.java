@@ -1,16 +1,20 @@
 package pl.uwm.sportclub.service;
 
 import pl.uwm.sportclub.manager.EquipmentRepository;
+import pl.uwm.sportclub.manager.MemberRepository;
 import pl.uwm.sportclub.model.Equipment;
+import pl.uwm.sportclub.model.Member;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class EquipmentService {
     private final EquipmentRepository equipmentRepository;
+    private MemberRepository memberRepository;
 
-    public EquipmentService(EquipmentRepository equipmentRepository) {
+    public EquipmentService(EquipmentRepository equipmentRepository, MemberRepository memberRepository) {
         this.equipmentRepository = equipmentRepository;
+        this.memberRepository = memberRepository;
     }
 
     public boolean isAvailable(int id)
@@ -83,13 +87,13 @@ public class EquipmentService {
         return count;
     }
 
-    public void rentEquipment(int id)
+    public void rentEquipment(int eqID, int memberID)
     {
-        if(id < 0)
+        if(eqID < 0 || memberID < 0)
         {
             throw new IllegalArgumentException("ID can't be negative");
         }
-        Equipment eqToRent = equipmentRepository.findById(id);
+        Equipment eqToRent = equipmentRepository.findById(eqID);
         if(eqToRent == null)
         {
             throw new IllegalArgumentException("There's no equipment with your ID");
@@ -98,8 +102,14 @@ public class EquipmentService {
         {
             throw new IllegalStateException("Equipment is already rented");
         }
+        Member member = memberRepository.findById(memberID);
+        if(member == null)
+        {
+            throw new IllegalArgumentException("Member not found.");
+        }
         eqToRent.setAvailable(false);
-        System.out.println("Successfully rended: " + eqToRent.getName());
+        eqToRent.setRenterId(memberID);
+        System.out.println("Successfully rended: " + eqToRent.getName() + " to " + member.getFirstName() + " " + member.getLastName());
     }
 
     public void returnEquipment(int id)
@@ -114,6 +124,7 @@ public class EquipmentService {
             throw new IllegalStateException("Equipment is in the reception");
         }
         eqToReturn.setAvailable(true);
+        eqToReturn.setRenterId(-1);
         System.out.println("Successfully returned: " + eqToReturn.getName());
     }
 
