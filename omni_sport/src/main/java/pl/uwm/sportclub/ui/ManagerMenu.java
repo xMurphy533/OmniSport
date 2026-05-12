@@ -4,6 +4,7 @@ import pl.uwm.sportclub.model.Coach;
 import pl.uwm.sportclub.model.Equipment;
 import pl.uwm.sportclub.service.CoachService;
 import pl.uwm.sportclub.service.EquipmentService;
+import utils.ConsoleColors;
 import utils.InputValidator;
 import utils.InputValidator.*;
 
@@ -45,10 +46,10 @@ public class ManagerMenu {
                     addEquipmentLogic();
                     break;
                 case "3":
-                    //rentEqLogic();
+                    rentEquipment();
                     break;
                 case "4":
-                    //returnEqLogic();
+                    returnEquipment();
                     break;
                 case "0":
                     System.out.println("Closing of manager panel. Goodbye");
@@ -113,5 +114,30 @@ public class ManagerMenu {
         Equipment newEquipment = new Equipment(id, name, type);
 
         equipmentService.addEquipment(newEquipment);
+    }
+
+    private void rentEquipment()
+    {
+        System.out.println("=== RENTING OF EQUIPMENT ===");
+        int id = InputValidator.getPositiveIntFromUser("Enter ID of equipment you want to rent: ");
+        try
+        {
+            equipmentService.rentEquipment(id);
+        } catch (IllegalArgumentException | IllegalStateException e)
+        {
+            System.out.println(ConsoleColors.RED + ConsoleColors.BOLD + "DECLINE: " + ConsoleColors.RESET + e.getMessage());
+        }
+    }
+
+    private void returnEquipment()
+    {
+        System.out.println("=== RETURNING OF EQUIPMENT ===");
+        int id = InputValidator.getPositiveIntFromUser("Enter ID of equipment you want to return: ");
+        try{
+            equipmentService.returnEquipment(id);
+        } catch(IllegalArgumentException | IllegalStateException e)
+        {
+            System.out.println(ConsoleColors.RED + ConsoleColors.BOLD + "DECLINE: " + ConsoleColors.RESET + e.getMessage());
+        }
     }
 }

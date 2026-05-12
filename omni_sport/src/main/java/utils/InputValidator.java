@@ -23,4 +23,17 @@ public class InputValidator {
         }
         return result;
     }
+
+    public static int getPositiveIntFromUser(String message)
+    {
+        int value;
+        while(true)
+        {
+            value = getValidIntFromUser(message);
+            if(value > 0)
+                return value;
+            else
+                System.out.println("ID can't be negative. Please try again.");
+        }
+    }
 }

@@ -74,6 +74,7 @@ public class EquipmentService {
     public int countAvailableEquipment()
     {
         List<Equipment> equipment = equipmentRepository.getAllItems();
+
         int count = 0;
         for(Equipment e : equipment)
         {
@@ -81,4 +82,39 @@ public class EquipmentService {
         }
         return count;
     }
+
+    public void rentEquipment(int id)
+    {
+        if(id < 0)
+        {
+            throw new IllegalArgumentException("ID can't be negative");
+        }
+        Equipment eqToRent = equipmentRepository.findById(id);
+        if(eqToRent == null)
+        {
+            throw new IllegalArgumentException("There's no equipment with your ID");
+        }
+        if(!eqToRent.isAvailable())
+        {
+            throw new IllegalStateException("Equipment is already rented");
+        }
+        eqToRent.setAvailable(false);
+        System.out.println("Successfully rended: " + eqToRent.getName());
+    }
+
+    public void returnEquipment(int id)
+    {
+        Equipment eqToReturn = equipmentRepository.findById(id);
+        if(eqToReturn == null)
+        {
+            throw new IllegalArgumentException("There's no equipment with your ID");
+        }
+        if(eqToReturn.isAvailable())
+        {
+            throw new IllegalStateException("Equipment is in the reception");
+        }
+        eqToReturn.setAvailable(true);
+        System.out.println("Successfully returned: " + eqToReturn.getName());
+    }
+
 }
